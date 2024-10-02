@@ -6,7 +6,6 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/thoas/go-funk"
 	"k8s.io/cli-runtime/pkg/genericclioptions"
-	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd/api"
 	api2 "kc/pkg/api"
 	"kc/pkg/ui"
@@ -43,7 +42,6 @@ type ContextSwitcherOptions struct {
 	namespace          string
 	task               int
 	rawConfig          api.Config
-	kubernetesClient   *kubernetes.Clientset
 	kubeConfigApi      api2.KubeConfig
 	onlyCurrentContext bool
 }

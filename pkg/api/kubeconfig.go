@@ -14,7 +14,6 @@ type KubeConfig struct {
 	configFlags      *genericclioptions.ConfigFlags
 	config           api.Config
 	kubernetesClient *kubernetes.Clientset
-	counter          int
 }
 
 func NewKubeConfigAPI(configFlags *genericclioptions.ConfigFlags, config api.Config) KubeConfig {
