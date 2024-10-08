@@ -52,6 +52,7 @@ jobs:
 
   update-krew:
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - uses: actions/checkout@v3
       - name: Update new version in krew-index
