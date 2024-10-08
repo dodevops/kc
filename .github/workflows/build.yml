@@ -36,7 +36,9 @@ jobs:
 
       - name: Package file
         run: |
+          set +e
           rm kubectl-cs.tar.gz &>/dev/null
+          set -e
           tar czf kubectl-cs.tar.gz kubectl-cs LICENSE
 
       - name: Release
