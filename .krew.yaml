@@ -10,37 +10,37 @@ spec:
         matchLabels:
           os: darwin
           arch: amd64
-      {{addURIAndSha "https://github.com/dodevops/kc/releases/download/{{ .TagName }}/kubectl-cs-darwin-amd64.tar.gz" .TagName }}
+      {{addURIAndSha "https://github.com/dodevops/kc/releases/download/{{ .TagName }}/kubectl-cs-darwin-amd64.tar.gz" .TagName | indent 6}}
       bin: kubectl-cs
     - selector:
         matchLabels:
           os: darwin
           arch: arm64
-      {{addURIAndSha "https://github.com/dodevops/kc/releases/download/{{ .TagName }}/kubectl-cs-darwin-arm64.tar.gz" .TagName }}
+      {{addURIAndSha "https://github.com/dodevops/kc/releases/download/{{ .TagName }}/kubectl-cs-darwin-arm64.tar.gz" .TagName | indent 6 }}
       bin: kubectl-cs
     - selector:
         matchLabels:
           os: windows
           arch: amd64
-      {{addURIAndSha "https://github.com/dodevops/kc/releases/download/{{ .TagName }}/kubectl-cs-windows-amd64.tar.gz" .TagName }}
+      {{addURIAndSha "https://github.com/dodevops/kc/releases/download/{{ .TagName }}/kubectl-cs-windows-amd64.tar.gz" .TagName | indent 6 }}
       bin: kubectl-cs
     - selector:
         matchLabels:
           os: windows
           arch: arm64
-      {{addURIAndSha "https://github.com/dodevops/kc/releases/download/{{ .TagName }}/kubectl-cs-windows-arm64.tar.gz" .TagName }}
+      {{addURIAndSha "https://github.com/dodevops/kc/releases/download/{{ .TagName }}/kubectl-cs-windows-arm64.tar.gz" .TagName | indent 6 }}
       bin: kubectl-cs
     - selector:
         matchLabels:
           os: linux
           arch: amd64
-      {{addURIAndSha "https://github.com/dodevops/kc/releases/download/{{ .TagName }}/kubectl-cs-linux-amd64.tar.gz" .TagName }}
+      {{addURIAndSha "https://github.com/dodevops/kc/releases/download/{{ .TagName }}/kubectl-cs-linux-amd64.tar.gz" .TagName | indent 6 }}
       bin: kubectl-cs
     - selector:
         matchLabels:
           os: linux
           arch: arm64
-      {{addURIAndSha "https://github.com/dodevops/kc/releases/download/{{ .TagName }}/kubectl-cs-linux-arm64.tar.gz" .TagName }}
+      {{addURIAndSha "https://github.com/dodevops/kc/releases/download/{{ .TagName }}/kubectl-cs-linux-arm64.tar.gz" .TagName | indent 6 }}
       bin: kubectl-cs
   shortDescription: Quick Kubernetes context switcher
   description: |

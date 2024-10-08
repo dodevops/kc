@@ -50,5 +50,8 @@ jobs:
           asset-name: kubectl-cs-${{ matrix.goos }}-${{ matrix.goarch }}.tar.gz
           file: kubectl-cs.tar.gz
 
+  update-krew:
+    runs-on: ubuntu-latest
+    steps:
       - name: Update new version in krew-index
         uses: rajatjindal/krew-release-bot@v0.0.46
