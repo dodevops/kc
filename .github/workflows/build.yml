@@ -32,13 +32,21 @@ jobs:
           go-version: "1.23"
 
       - name: Build
-        run: go build -o kc cmd/kc.go
+        run: go build -o kubectl-cs cmd/kubectl-cs.go
 
-      - name: Release file
+      - name: Package file
+        run: |
+          rm kubectl-cs.tar.gz &>/dev/null
+          tar czf kubectl-cs.tar.gz kubectl-cs LICENSE
+
+      - name: Release
         uses: djnicholson/release-action@v2.10
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           release-name: ${{ github.event.release.name }}
           tag-name: ${{ github.event.release.tag_name }}
-          asset-name: kc-${{ matrix.goos }}-${{ matrix.goarch }}
-          file: kc
+          asset-name: kubectl-cs-${{ matrix.goos }}-${{ matrix.goarch }}.tar.gz
+          file: kubectl-cs.tar.gz
+
+      - name: Update new version in krew-index
+        uses: rajatjindal/krew-release-bot@v0.0.46
