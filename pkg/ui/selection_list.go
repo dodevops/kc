@@ -25,7 +25,6 @@ type SelectionList struct {
 var _ tea.Model = SelectionList{}
 
 func NewSelectionList(title string, kubeConfigAPI api.KubeConfig, onlyCurrentContext bool) SelectionList {
-	_, _ = tea.LogToFile("/tmp/cslog", "debug")
 	d := list.NewDefaultDelegate()
 	d.SetSpacing(0)
 	d.ShowDescription = false

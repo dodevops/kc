@@ -6,7 +6,6 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/client-go/tools/clientcmd/api"
-	"log"
 	"slices"
 )
 
@@ -55,7 +54,6 @@ func (r *KubeConfig) GetCurrentNamespace() string {
 }
 
 func (r *KubeConfig) GetNamespacesInContext(context string) ([]string, error) {
-	log.Printf("Getting namespaces in context %s", context)
 	var namespaces []string
 	oldContext := r.config.CurrentContext
 
@@ -75,10 +73,7 @@ func (r *KubeConfig) GetNamespacesInContext(context string) ([]string, error) {
 		namespaces = ns
 	}
 
-	log.Printf("Found %d namespaces", len(namespaces))
-
 	if oldContext != context {
-		log.Printf("Switching back to old context")
 		if err := r.SwitchContext(context); err != nil {
 			return namespaces, err
 		}
@@ -88,7 +83,6 @@ func (r *KubeConfig) GetNamespacesInContext(context string) ([]string, error) {
 }
 
 func (r *KubeConfig) SwitchContext(context string) error {
-	log.Printf("Switching to context %s", context)
 	r.config.CurrentContext = context
 	return r.updateConfig(r.config)
 }
