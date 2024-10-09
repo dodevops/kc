@@ -114,6 +114,9 @@ func (o *ContextSwitcherOptions) Complete(args []string) error {
 
 func (o *ContextSwitcherOptions) interpretTask(value string) {
 	components := strings.Split(value, ":")
+	if len(components) != 2 {
+		return
+	}
 	if components[0] != "" {
 		o.context = components[0]
 		o.task = TaskSwitchContext
@@ -132,7 +135,7 @@ func (o *ContextSwitcherOptions) Validate() error {
 		return fmt.Errorf("wrong argument specified")
 	}
 
-	if o.task == TaskSwitchBoth || o.task == TaskSwitchContext &&
+	if (o.task == TaskSwitchBoth || o.task == TaskSwitchContext) &&
 		!funk.ContainsString(funk.Keys(o.rawConfig.Contexts).([]string), o.context) {
 		return fmt.Errorf("selected context does not exist")
 	}
