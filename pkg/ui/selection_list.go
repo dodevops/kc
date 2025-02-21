@@ -18,6 +18,7 @@ type SelectionList struct {
 	Error              error
 	LoadingContext     string
 	ContextsToLoad     []string
+	OriginalContext    string
 	kubeConfigAPI      api.KubeConfig
 	onlyCurrentContext bool
 }
@@ -39,6 +40,7 @@ func NewSelectionList(title string, kubeConfigAPI api.KubeConfig, onlyCurrentCon
 		Loading:            true,
 		kubeConfigAPI:      kubeConfigAPI,
 		onlyCurrentContext: onlyCurrentContext,
+		OriginalContext:    kubeConfigAPI.GetCurrentContext(),
 	}
 }
 
@@ -82,6 +84,10 @@ func (s SelectionList) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			return loadNextContext{}
 		})
 	case loadingFinished:
+		if err := s.kubeConfigAPI.SwitchContext(s.OriginalContext); err != nil {
+			s.Error = err
+			return s, tea.Quit
+		}
 		s.Loading = false
 		if len(s.list.Items()) == 0 {
 			return s, tea.Quit
